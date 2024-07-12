@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Requests</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h3>My <span th:text = "${showToggleButton != null and showToggleButton == true ? 'Pending' : 'Completed'}"></span> Requests</h3>
+<table th:if = "${#lists.size(movieRequests) > 0}">
+    <thead>
+    <tr >
+        <th>Request Id</th>
+        <th>Movie Name</th>
+        <th th:if = "${showToggleButton != null and showToggleButton}">Watched It</th>
+        <th th:if = "${showToggleButton != null and showToggleButton}">Haven't Watched It</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movieRequest : ${movieRequests}">
+        <td th:text="${movieRequest.requestId}"></td>
+        <td th:text="${movieRequest.movie.getMovieName()}"></td>
+        <td th:if = "${showToggleButton != null and showToggleButton}">
+            <form action = "toggle-it" method = "post">
+                <input type = "hidden"  name = "movieName" th:attr = "value=${movieRequest.movie.getMovieName()}">
+                <input type = "hidden" name = "watchedIt" value = "true">
+                <input type = "submit" value = "Hell Yeah">
+            </form>
+        </td>
+        <td th:if = "${showToggleButton != null and showToggleButton}">
+            <form action = "toggle-it" method = "post">
+                <input type = "hidden"  name = "movieName" th:attr = "value=${movieRequest.movie.getMovieName()}">
+                <input type = "hidden" name = "watchedIt" value = "false">
+                <input type = "submit" value = "Hell No">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:if = "${#lists.size(movieRequests) == 0}">
+    <h5 th:if = "${showToggleButton != null and showToggleButton == true}">Great Job! Jatin there are no pending requests</h5>
+    <h5 th:if = "${showToggleButton != null and showToggleButton == false}">Oh ho, there are no completed request...please check the pending ones</h5>
+</div>
+
+<form action = "admin" method = "get">
+    <input type = "submit" value = "Go Back">
+</form>
+</body>
+</html>

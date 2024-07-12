@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Have Jatin seen this movie?</title>
+</head>
+<body>
+<p>
+<h3> Welcome Guys!!!</h3>
+<h5> We will check Jatin's knowledge of movies</h5>
+
+<div id = "form-div">
+    <form action="submission-handler" method = "post">
+        <label for="movie-title">Enter the movie name</label> &nbsp;
+        <input id = "movie-title" name = "movieName" type = "text">
+        <input id = "movie-submit-button" type = "submit" value = "Let's Go!">
+    </form>
+</div>
+
+
+<div id="registered-div" th:if="${registered != null and registered}">
+    <h5>Thanks, we have registered your request. You can check the status in your My Requests tab</h5>
+</div>
+<div id="repeat-registered-div" th:if="${registered != null and !registered}">
+    <h5>Hello there partner, you have already registered this one.</h5>
+</div>
+<br>
+<br>
+<form action="request-handler" method = "get">
+    <input id = "request-button" type = "submit" value = "My Requests">
+</form>
+
+</body>
+</html>

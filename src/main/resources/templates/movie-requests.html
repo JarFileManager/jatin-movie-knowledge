@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Requests</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h3>My Movie Requests</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Request Id</th>
+        <th>Movie Name</th>
+        <th>Has Jatin Watched</th>
+        <th>Request Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movieRequest : ${movieRequests}">
+        <td th:text="${movieRequest.requestId}"></td>
+        <td th:text="${movieRequest.movie.getMovieName()}"></td>
+        <td th:text="${movieRequest.movie.isHasJatinWatched() ? 'Yes' : 'No'}"></td>
+        <td th:text="${movieRequest.status}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/" method = "get">
+    <input id = "home-button" type = "submit" value = "Create a new Request">
+</form>
+</body>
+</html>

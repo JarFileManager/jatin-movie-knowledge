@@ -11,11 +11,16 @@ public class MailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendEmail(String to, String subject, String emailText){
+    public void sendEmail(String to, String subject, String movieName){
+        String emailText = buildMovieMail(movieName);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
         message.setText(emailText);
         mailSender.send(message);
+    }
+
+    public String buildMovieMail(String movieName){
+        return "Hi Jatin, Have you seen " + movieName.toUpperCase() + " ?";
     }
 }

@@ -9,12 +9,19 @@
 <h5>Please look into all the pending requests</h5>
 <h5>Your friends are waiting</h5>
 
-<form id = "completed-requests" action = "completed-requests">
-    <input type = "submit" value = "Completed Requests">
-</form>
+<div id = "buttons" style = "display : flex; gap : 10px;">
+    <form id = "completed-requests" action = "completed-requests">
+        <input type = "submit" value = "Completed Requests">
+    </form>
 
-<form id = "pending-requests" action = "pending-requests">
-    <input type = "submit" value="Pending Requests">
-</form>
+    <form id = "pending-requests" action = "pending-requests">
+        <input type = "submit" value="Pending Requests">
+    </form>
+
+    <form action = "logout">
+        <input type  =  "submit" value = "Logout">
+    </form>
+</div>
+
 </body>
 </html>

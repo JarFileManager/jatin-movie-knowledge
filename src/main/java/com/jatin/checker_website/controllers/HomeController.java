@@ -18,9 +18,6 @@ public class HomeController {
     @Autowired
     private MovieService movieService;
 
-    @Value("${spring.mail.username}")
-    private String adminMail;
-
     @Autowired
     private MailService mailService;
 
@@ -32,7 +29,7 @@ public class HomeController {
 
         model.addAttribute("registered", requestRegistered );
         if(requestRegistered){
-            mailService.sendEmail(adminMail, "Movie Mail!!", movieName);
+            mailService.sendEmail(movieName);
         }
 
         return "index";
